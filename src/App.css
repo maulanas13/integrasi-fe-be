@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,196 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+/* CUSTOM GENERAL UI STYLING */
+:root {
+  --brand-1st-color: #736357;
+  --brand-2nd-color: #303030;
+  --brand-3rd-color: white;
+}
+
+.bg-color-brand-1st {
+  background-color: var(--brand-1st-color);
+}
+
+.bg-color-brand-2nd {
+  background-color: var(--brand-2nd-color);
+}
+
+.bg-color-brand-3rd {
+  background-color: var(--brand-3rd-color);
+}
+
+.bg-color-skeleton {
+  background-color: lightgray !important;
+}
+
+.txt-color-brand-1st {
+  color: var(--brand-1st-color);
+}
+
+.txt-color-brand-2nd {
+  color: var(--brand-2nd-color);
+}
+
+.txt-color-brand-3rd {
+  color: var(--brand-3rd-color);
+}
+
+.fs-0_8x {
+  font-size: 0.8em !important;
+}
+
+.fs-0_9x {
+  font-size: 0.9em !important;
+}
+
+.fs-1_05x {
+  font-size: 1.05em !important;
+}
+
+.fs-1_1x {
+  font-size: 1.1em !important;
+}
+
+.fs-1_2x {
+  font-size: 1.2em !important;
+}
+
+.fs-1_5x {
+  font-size: 1.5em !important;
+}
+
+.fs-2x {
+  font-size: 2em !important;
+}
+
+.fs-3x {
+  font-size: 3em !important;
+}
+
+.fs-3_5x {
+  font-size: 3.5em !important;
+}
+
+.fs-4x {
+  font-size: 4em !important;
+}
+
+.fw-500 {
+  font-weight: 500 !important;
+}
+
+.fw-600 {
+  font-weight: 600 !important;
+}
+
+.fw-700 {
+  font-weight: 700 !important;
+}
+
+.fw-800 {
+  font-weight: 800 !important;
+}
+
+.h-42px {
+  height: 42px;
+}
+
+.h-50px {
+  height: 50px;
+}
+
+.fbasis-8 {
+  flex-basis: 8%;
+}
+
+.fbasis-10 {
+  flex-basis: 10%;
+}
+
+.fbasis-15 {
+  flex-basis: 15%;
+}
+
+.fbasis-20 {
+  flex-basis: 20%;
+}
+
+.fbasis-40 {
+  flex-basis: 40%;
+}
+
+.fbasis-50 {
+  flex-basis: 50%;
+}
+
+.fbasis-60 {
+  flex-basis: 60%;
+}
+
+.fbasis-80 {
+  flex-basis: 80%;
+}
+
+.fbasis-85 {
+  flex-basis: 85%;
+}
+
+.fbasis-90 {
+  flex-basis: 90%;
+}
+
+.f-row-center {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.f-row-start {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.f-column-center {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.f-column-start {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.b-rad-0 {
+  border-radius: 0;
+}
+
+.b-rad-4 {
+  border-radius: 4px;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.link-no-decoration:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.zindex-100 {
+  z-index: 100;
 }
