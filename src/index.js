@@ -5,12 +5,19 @@ import App from './App';
 import "bootstrap/dist/css/bootstrap.min.css";
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
+import reducer from "./redux/reducers"
+import {Provider} from "react-redux"
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
 
+const store = createStore(reducer, {}, applyMiddleware(thunk));
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 

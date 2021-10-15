@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 import axios from "axios";
-import API_URL from "../Helpers/ApiUrl";
-import { Link } from "react-router-dom";
+import {API_URL} from "../Helpers/ApiUrl";
+import { Link, Redirect } from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux"
 
 const Register = () => {
+    const dispatch = useDispatch();
+
+    const {Auth} = useSelector((state) => {
+        return {
+            Auth: state.AuthReducer,
+        };
+    });
+
     const [registerData, setRegisterData] = useState({
         username: "",
         email: "",
@@ -27,14 +36,21 @@ const Register = () => {
             try {
                 const res = await axios.post(`${API_URL}/auth/register`, dataBody);
                 console.log(res.data);
-                alert("berhasil")
+                localStorage.setItem("token-access", res.data.token);
+                // Register otomatis login jadi reduxnya bisa dibikin sama
+                dispatch({type: "LOGIN", payload: res.data.data});
+                alert("berhasil");
             } catch (error) {
                 alert(error.response.data.message || "server error");
             }
         } else {
             alert("Tidak sesuai")
-        }
-    }
+        };
+    };
+
+    if (Auth.isLogin) {
+        return <Redirect to="/" />;
+    };
 
     return (
         <div className="f-column-center" style={{height: "100vh"}}>
@@ -73,7 +89,7 @@ const Register = () => {
                         onChange={onInputChange}
                         className="form-control my-2"
                     />
-                    <p className="m-0">Sudah punya akun?</p> <Link to="/login">Klik</Link>
+                    <p className="m-0">Sudah punya akun?</p> <Link to="/login">Klik sini</Link>
                     <button 
                         type="submit"
                         className="btn btn-primary mt-2"
