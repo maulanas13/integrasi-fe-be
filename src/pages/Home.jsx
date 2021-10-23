@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Table } from "reactstrap";
+import { API_URL } from "../Helpers/ApiUrl";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -9,7 +10,10 @@ function Home() {
   const [addData, setAddData] = useState({
     name: "",
     price: "",
-  })
+  });
+  const [file, setFile] = useState(null);
+  const [fileEdit, setFileEdit] = useState(null);
+
   const editNameRef = useRef();
   const editPriceRef = useRef();
 
@@ -37,9 +41,10 @@ function Home() {
   };
 
   const EditRow = (props) => {
-    const {index, nameToEdit, priceToEdit} = props;
+    const {index, nameToEdit, imageToEdit, priceToEdit} = props;
     const [editProdInput, setEditProdInput] = useState({
       name: nameToEdit,
+      image: imageToEdit,
       price: priceToEdit,
     });
 
@@ -123,9 +128,26 @@ function Home() {
 
   // ADD DATA RELATED FUNCTIONS
   const addDataToBe = async () => {
+    const formData = new FormData();
     const dataToBe = addData;
-    let res = await axios.post("http://localhost:5100/products", dataToBe);
-    setProducts(res.data);
+    formData.append("data", JSON.stringify(dataToBe));
+    formData.append("image", fileAdd);
+    let config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    try {
+      let res = await axios.post("http://localhost:5100/products", formData, config);
+      setProducts(res.data);
+      setFile(null);
+      setAddData({
+        name: "",
+        price: "",
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const onInputChange = (e) => {
@@ -136,12 +158,15 @@ function Home() {
   const renderData = () => {
     return products.map((val, index) => {
       if (showEdit && indexEdit === index) {
-        return <EditRow index={index} nameToEdit={val.name} priceToEdit={val.price} /> 
+        return <EditRow index={index} nameToEdit={val.name} imageToEdit={val.image} priceToEdit={val.price} /> 
       } else {
         return (
           <tr key={index}>
             <td>{index + 1}</td>
             <td>{val.name}</td>
+            <td width={300}>
+              <img src={API_URL + val.image} alt={val.name} height={200} />
+            </td>
             <td>{val.price}</td>
             <td>
               <button 
@@ -173,6 +198,7 @@ function Home() {
             <tr>
               <th>#</th>
               <th>Name</th>
+              <th>Image</th>
               <th>Price</th>
               <th>Action</th>
             </tr>
@@ -186,6 +212,15 @@ function Home() {
                   value={addData.name} 
                   name="name"
                   placeholder="Product Name"
+                  onChange={onInputChange}
+                />
+              </td>
+              <td>
+                <input 
+                  className="form-control" 
+                  value={addData.image} 
+                  name="image"
+                  placeholder="Image"
                   onChange={onInputChange}
                 />
               </td>
