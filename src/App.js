@@ -12,6 +12,7 @@ import axios from "axios";
 import {API_URL} from "./Helpers/ApiUrl";
 import { useDispatch } from "react-redux";
 import Upload from "./pages/Upload";
+import Chat from "./pages/Chat";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ function App() {
         <Route path="/register" exact component={Register} />
         <Route path="/verified" exact component={Verified} />
         <Route path="/upload" exact component={Upload} />
+        <Route path="/chat" exact component={Chat} />
         <Route path="*" exact component={NotFound} />
       </Switch>
     </div>

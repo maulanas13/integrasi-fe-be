@@ -131,7 +131,7 @@ function Home() {
     const formData = new FormData();
     const dataToBe = addData;
     formData.append("data", JSON.stringify(dataToBe));
-    formData.append("image", fileAdd);
+    // formData.append("image", fileAdd);
     let config = {
       headers: {
         "Content-Type": "multipart/form-data",
